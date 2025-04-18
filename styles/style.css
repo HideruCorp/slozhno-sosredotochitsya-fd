@@ -1,5 +1,163 @@
 /* Основные стили проекта. Это стили для темы, которую вы верстаете первой. */
-
 .page {
   /* сохраните в разметке и стилях класс page у тега body. Он удобен, чтобы составлять селекторы для разных цветовых тем. */
+  color: var(--text-color, #F1B2CE);
+  font-family: var(--primary-font, 'IBM Plex mono', monospace);
+  font-weight: normal;
+  font-size: var(--primary-font-size,18px);
+  line-height: var(--primary-line-height, 1.3);
+  background-color: var(--bg-color, #000028);
+  background-image: url("/images/cover-image-dark.jpg");
+  background-image: -webkit-image-set(
+    url("/images/cover-image-dark.avif") type("image/avif"),
+    url("/images/cover-image-dark.jpg") type("image/jpeg")
+  );
+  background-image: image-set(
+    url("/images/cover-image-dark.avif") type("image/avif"),
+    url("/images/cover-image-dark.jpg") type("image/jpeg")
+  );
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.main-title {
+  color: var(--primary-title-color, #DB00FF);
+  font-weight: bold;
+  font-size: var(--main-title-size, clamp(6.444rem, 6.2322rem + 1.0168vw, 6.666rem));
+  line-height: 0.825;
+  text-transform: lowercase;
+  text-shadow: var(--shadow-offset, 4px) var(--shadow-offset, 4px) var(--accent-color, #FF0070);
+  text-wrap: wrap;
+}
+
+.decorated-zone::before {
+  content: "";
+  position: absolute;
+  top: var(--section-padding, 10px);
+  right: var(--section-padding, 10px);
+  width: 25px;
+  height: 25px;
+  border-inline-end: 1px solid var(--decoration-color,#ff0070);
+  border-block-start: 1px solid var(--decoration-color,#ff0070);
+}
+
+.decorated-zone::after {
+  content: "";
+  position: absolute;
+  bottom: var(--section-padding, 10px);
+  left: var(--section-padding, 10px);
+  border-inline-start: 1px solid var(--decoration-color,#ff0070);
+  border-block-end: 1px solid var(--decoration-color,#ff0070);
+  inline-size: 25px;
+  block-size: 25px;
+}
+
+.header {
+  position: relative;
+  display: grid;
+  grid-template-rows: 1fr min-content 1fr;
+  align-items: center;
+  padding: var(--section-padding, 10px);
+  min-block-size: 100vh;
+}
+
+.header__theme-menu {
+  grid-row: 1;
+  justify-self: end;
+  align-self: center;
+  color: var(--decoration-color, #FF0070);
+}
+
+.header__theme-menu-list {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: stretch;
+  gap: 10px;
+}
+
+.header__theme-menu-button {
+  border: 1px solid transparent;
+  text-transform: lowercase;
+  inline-size: 100%;
+}
+
+.header__theme-menu-button_active  {
+  border: 1px solid var(--decoration-color, #FF0070);
+}
+
+.header__record-indicator {
+  position: absolute;
+  top: var(--section-padding, 10px);
+  right: var(--section-padding, 10px);
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  gap: 10px;
+  margin: 1.3px 10px;
+  color: var(--decoration-color, #FF0070);
+}
+
+.header__record-indicator::after {
+  content: "";
+  display: block;
+  border-radius: 50%;
+  box-shadow: 0 0 4px 2px var(--decoration-color, #FF0070);
+  background-color: var(--decoration-color, #FF0070);
+  inline-size: 9px;
+  block-size: 9px;
+}
+
+.header__title-no-focus {
+  grid-row: 2;
+  justify-self: start;
+}
+
+.header__tagline {
+  grid-row: 3;
+  padding-inline-end: 5px;
+  color: var(--inverse-text-color, #000028);
+  font-weight: bold;
+  background-color: var(--accent-color, #FF0070);
+}
+
+.footer {
+  position: relative;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  margin-block-start: var(--main-section-margin);
+  min-block-size: 100vh;
+}
+
+.footer__title-focus {
+  --shadow-offset: 2px;
+}
+
+@media (width >= 768px) {
+  .header__title-no-focus {
+    margin-inline-start: calc(0px - var(--section-padding)) ;
+  }
+  .header__tagline {
+    margin-inline-start: 50%;
+  }
+}
+
+
+@media (width >= 1024px) {
+  .header__title-no-focus {
+    position: relative;
+    left: max(0px, calc((100% - var(--current-breakpoint)) / 2));
+  }
+  .header__theme-menu {
+    justify-self: center;
+    align-self: start;
+  }
+  
+  .header__theme-menu-list {
+    flex-flow: row nowrap;
+  }
 }

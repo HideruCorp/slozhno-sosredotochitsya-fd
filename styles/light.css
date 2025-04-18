@@ -9,8 +9,26 @@
     Так стили написанные ниже будут иметь больший вес,
     чем стили в медиазапросе предпочтений пользователя
   */
+  --bg-color: #FFF1F7;
+  --text-color: #353430;
+  --inverse-text-color: #353430;
+  --accent-color: #FF8DCB;
+  --primary-title-color: #FFC2E6;
+  --decoration-color: #353430;
 }
 
 .theme-light .page {
-  /* Вам также нужно будет написать ряд подобных селекторов */
+  background-image: url("/images/cover-image-light.jpg");
+  background-image: -webkit-image-set(
+    url("/images/cover-image-light.avif") type("image/avif"),
+    url("/images/cover-image-light.jpg") type("image/jpeg")
+  );
+  background-image: image-set(
+    url("/images/cover-image-light.avif") type("image/avif"),
+    url("/images/cover-image-light.jpg") type("image/jpeg")
+  );
+}
+
+.theme-light .header__record-indicator {
+  display: none;
 }
