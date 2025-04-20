@@ -36,8 +36,8 @@
   position: absolute;
   top: var(--section-padding, 10px);
   right: var(--section-padding, 10px);
-  width: 25px;
-  height: 25px;
+  inline-size: 25px;
+  block-size: 25px;
   border-inline-end: 1px solid var(--decoration-color, #ff0070);
   border-block-start: 1px solid var(--decoration-color, #ff0070);
 }
@@ -54,20 +54,27 @@
 }
 
 .decorated-text {
+  line-height: 1.289;
   color: var(--inverse-text-color, #000028);
   background-color: var(--accent-color, #ff0070);
 }
 
-.section {
+.page .page__section {
   padding: var(--section-padding, 10px);
+  margin-block-end: var(--page__section-margin, 30px);
 }
 
-.section--root:not(:last-child) {
-  margin-block-end: var(--main-section-margin, 30px);
+.page .page__section:first-child {
+  padding-block-start: var(--section-padding, 10px);
+}
+
+.page .page__section:last-child {
+  padding-block-end: var(--section-padding, 10px);
+  margin-block-end: 0;
 }
 
 .main__section:not(:last-child) {
-  margin-block-end: var(--main-subsection-margin, 40px);
+  margin-block-end: var(--main__section-margin, 50px);
 }
 
 .section-title {
@@ -76,7 +83,7 @@
 
 .content-block__title {
   display: block;
-  margin-bottom: 10px;
+  margin-block-end: 10px;
 }
 
 .content-block__link {
@@ -85,7 +92,15 @@
 }
 
 .content-block__link:hover {
-  text-decoration: underline;
+  border-block-end: 1px solid var(--text-color, #F1B2CE);
+}
+
+.content-block__link:focus {
+  outline: none;
+}
+
+.content-block__link:focus-visible {
+  outline: 1px solid var(--text-color, #F1B2CE);
 }
 
 .header {
@@ -113,12 +128,27 @@
 
 .header__theme-menu-button {
   border: 1px solid transparent;
+  padding: 1.5px 13px;
   text-transform: lowercase;
+  line-height: 1;
   inline-size: 100%;
 }
 
+.header__theme-menu-button:hover {
+  border: 1px solid var(--decoration-hover-color, #FF007066);
+}
+
+.header__theme-menu-button:focus {
+  outline: none;
+}
+
+.header__theme-menu-button:focus-visible {
+  border-block-end: 1px solid var(--decoration-color, #ff0070);
+}
+
 .header__theme-menu-button_active {
-  border: 1px solid var(--decoration-color, #ff0070);
+  outline: 1px solid var(--decoration-color, #ff0070);
+  pointer-events: none;
 }
 
 .header__record-indicator {
@@ -165,12 +195,12 @@
   gap: 20px;
 }
 
-.how-to__list-item:not(:last-child) {
+.how-to__list-item:not(:last-of-type) {
   margin-block-end: 20px;
 }
 
 .gallery__title {
-  margin-bottom: var(--gallery-gap, 10px);
+  margin-block-end: var(--gallery-gap, 10px);
 }
 
 .gallery__images {
@@ -180,13 +210,12 @@
 }
 
 .gallery__image {
-  width: 100%;
-  height: auto;
+  inline-size: 100%;
 }
 
 .gallery__image img {
-  width: 100%;
-  height: 100%;
+  inline-size: 100%;
+  block-size: 100%;
   object-fit: cover;
   object-position: center;
 }
@@ -197,7 +226,7 @@
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-  margin-block-start: var(--main-section-margin);
+  margin-block-start: var(--page__section-margin);
   min-block-size: 100vh;
 }
 
@@ -206,6 +235,10 @@
 }
 
 @media (width >= 768px) {
+  .decorated-text {
+    line-height: var(--primary-line-height, 1.3);
+  }
+
   .header__title-no-focus {
     margin-inline-start: calc(0px - var(--section-padding));
   }
@@ -216,7 +249,7 @@
   .main__section-reasons,
   .main__section-factors,
   .main__section-how-to {
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 1fr 2fr;
   }
 
   .reasons__title,
@@ -237,15 +270,16 @@
   .gallery__images {
     grid-template-columns: repeat(3, 1fr);
     grid-auto-flow: row dense;
+    grid-auto-rows: min-content;
   }
 
-  .gallery__images picture:first-child,
-  .gallery__images picture:last-child {
+  .gallery__images .gallery__image:first-of-type,
+  .gallery__images .gallery__image:last-of-type {
     grid-column: span 2;
   }
 
-  .gallery__images picture:nth-child(2),
-  .gallery__images picture:nth-child(3) {
+  .gallery__images .gallery__image:nth-of-type(2),
+  .gallery__images .gallery__image:nth-of-type(3) {
     grid-row: span 2;
   }
 }
@@ -264,9 +298,15 @@
     flex-flow: row nowrap;
   }
 
-  .main__section-factors {
-    grid-template-columns: 3fr 3fr 3fr;
+  .main__section-reasons,
+  .main__section-how-to {
+    grid-template-columns: 1fr 2.06fr;
   }
+
+  .main__section-factors {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
   .main__section-factors::before {
     content: "";
     display: block;

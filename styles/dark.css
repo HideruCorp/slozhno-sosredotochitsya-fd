@@ -11,5 +11,6 @@
   --inverse-text-color: #000028;
   --accent-color: #FF0070;
   --primary-title-color: #DB00FF;
-  --decoration-color: var(--accent-color);
+  --decoration-color: #FF0070;
+  --decoration-hover-color: #FF007066;
 }
