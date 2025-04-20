@@ -36,10 +36,11 @@
   position: absolute;
   top: var(--section-padding, 10px);
   right: var(--section-padding, 10px);
-  inline-size: 25px;
-  block-size: 25px;
+  z-index: -1;
   border-inline-end: 1px solid var(--decoration-color, #ff0070);
   border-block-start: 1px solid var(--decoration-color, #ff0070);
+  inline-size: 25px;
+  block-size: 25px;
 }
 
 .decorated-zone::after {
@@ -47,6 +48,7 @@
   position: absolute;
   bottom: var(--section-padding, 10px);
   left: var(--section-padding, 10px);
+  z-index: -1;
   border-inline-start: 1px solid var(--decoration-color, #ff0070);
   border-block-end: 1px solid var(--decoration-color, #ff0070);
   inline-size: 25px;
@@ -54,14 +56,14 @@
 }
 
 .decorated-text {
-  line-height: 1.289;
   color: var(--inverse-text-color, #000028);
+  line-height: 1.289;
   background-color: var(--accent-color, #ff0070);
 }
 
 .page .page__section {
-  padding: var(--section-padding, 10px);
   margin-block-end: var(--page__section-margin, 30px);
+  padding: var(--section-padding, 10px);
 }
 
 .page .page__section:first-child {
@@ -69,8 +71,8 @@
 }
 
 .page .page__section:last-child {
-  padding-block-end: var(--section-padding, 10px);
   margin-block-end: 0;
+  padding-block-end: var(--section-padding, 10px);
 }
 
 .main__section:not(:last-child) {
@@ -108,7 +110,8 @@
   display: grid;
   grid-template-rows: 1fr min-content 1fr;
   align-items: center;
-  min-block-size: 100vh;
+  block-size: 100vh;
+  min-block-size: 600px;
 }
 
 .header__theme-menu {
@@ -129,8 +132,8 @@
 .header__theme-menu-button {
   border: 1px solid transparent;
   padding: 1.5px 13px;
-  text-transform: lowercase;
   line-height: 1;
+  text-transform: lowercase;
   inline-size: 100%;
 }
 
@@ -214,10 +217,10 @@
 }
 
 .gallery__image img {
-  inline-size: 100%;
-  block-size: 100%;
   object-fit: cover;
   object-position: center;
+  inline-size: 100%;
+  block-size: 100%;
 }
 
 .footer {
@@ -227,7 +230,8 @@
   justify-content: center;
   align-items: center;
   margin-block-start: var(--page__section-margin);
-  min-block-size: 100vh;
+  block-size: 100vh;
+  min-block-size: 600px;
 }
 
 .footer__title-focus {
@@ -269,8 +273,8 @@
 
   .gallery__images {
     grid-template-columns: repeat(3, 1fr);
-    grid-auto-flow: row dense;
     grid-auto-rows: min-content;
+    grid-auto-flow: row dense;
   }
 
   .gallery__images .gallery__image:first-of-type,
