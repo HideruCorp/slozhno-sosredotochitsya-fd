@@ -12,6 +12,7 @@
   --main-title-size: clamp(6.444rem, 6.2322rem + 1.0168vw, 6.666rem);
   --main-section-margin: 30px;
   --main-subsection-margin: 50px;
+  --gallery-gap: 10px;
 
   /* Default color-scheme */
   --background-color: #000028;
@@ -29,6 +30,7 @@
     --section-padding: 20px;
     --main-title-size: clamp(6.667rem, 14.453vw + 0.5rem, 8.722rem);
     --main-section-margin: 40px;
+    --gallery-gap: 20px;
   }
 }
 
